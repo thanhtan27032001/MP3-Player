@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mp3_player/app/page/song_detail_page.dart';
 import 'app/page/home_page.dart';
 
 void main() {
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomePage(),
+      // home: const HomePage(),
+      home: const SongDetailPage(),
     );
   }
 }
