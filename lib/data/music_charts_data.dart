@@ -17,7 +17,7 @@ class MusicChartsData {
     var response = await http.get(uri);
     if (response.statusCode == 200) {
       print(response.body);
-      return parseMusicChartResponse(response.body);
+      return _parseMusicChartResponse(response.body);
     }
     else if (response.statusCode == 401) {
       print("Not found");
@@ -28,7 +28,7 @@ class MusicChartsData {
     return null;
   }
 
-  static MusicChartResponse parseMusicChartResponse(String data){
+  static MusicChartResponse _parseMusicChartResponse(String data){
     var object = json.decode(data);
     return MusicChartResponse.fromJson(object);
   }
