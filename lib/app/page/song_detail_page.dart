@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:mp3_player/data/song_detail_data.dart';
 import 'package:mp3_player/domain/model/song_detail_response.dart';
 
@@ -13,14 +14,27 @@ class _SongDetailPageState extends State<SongDetailPage> {
   late double screenWidth;
   double time = 0;
   SongDetailResponse? songDetailResponse;
+  AudioPlayer? player;
 
   @override
   void initState() {
     super.initState();
-    SongDetailData.fetchSongDetail("LmcGyZLpdukchXDtGyDHkHyZsnzkidRAx").then((value) {
+    SongDetailData.fetchSongDetail("LmcGyZLpdukchXDtGyDHkHyZsnzkidRAx").then((value) async {
       songDetailResponse = value;
+      if(songDetailResponse != null) {
+        player = AudioPlayer();
+        await player?.setUrl(songDetailResponse!.data!.source!.s128!);
+        player?.play();
+      }
     });
   }
+
+  @override
+  void dispose() {
+    player?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -94,6 +108,10 @@ class _SongDetailPageState extends State<SongDetailPage> {
                 });},
               ),
             ),
+
+            ElevatedButton(onPressed: () {
+              player?.pause();
+            }, child: Text("Pause"))
           ],
         ),
       ),
