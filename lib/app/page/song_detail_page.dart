@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mp3_player/data/song_detail_data.dart';
+import 'package:mp3_player/domain/model/song_detail_response.dart';
 
 class SongDetailPage extends StatefulWidget {
   const SongDetailPage({super.key});
@@ -9,12 +11,16 @@ class SongDetailPage extends StatefulWidget {
 
 class _SongDetailPageState extends State<SongDetailPage> {
   late double screenWidth;
+  double time = 0;
+  SongDetailResponse? songDetailResponse;
 
   @override
   void initState() {
     super.initState();
+    SongDetailData.fetchSongDetail("LmcGyZLpdukchXDtGyDHkHyZsnzkidRAx").then((value) {
+      songDetailResponse = value;
+    });
   }
-  double time = 0;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
