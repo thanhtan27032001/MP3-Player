@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mp3_player/app/page/song_detail_page.dart';
-import 'app/page/home_page.dart';
+import 'package:mp3_player/app/page/song_detail/song_detail_page.dart';
+import 'app/page/home/home_page.dart';
 
 void main() {
   runApp(const MyApp());
